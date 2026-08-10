@@ -1,0 +1,56 @@
+expenses={"groceries":[],"rent":[]}
+print("======EXPENSE TRACKER=======")
+while True:
+    type_of_expenses=(input("Enter Types of expense(type q to move forward): "))
+    if type_of_expenses=="q":
+         break
+    else:
+        expenses[type_of_expenses]=[]
+while True:
+    menu = int(input("1.Add Expense\n" \
+             "2.View Expense\n"
+             "3.View spending\n"
+             "4.View spending by category\n"
+             "5.Delete expense\n"
+             "6.Exit\n"
+             "ENTER YOUR CHOICE :  "))
+
+    if menu == 6 :
+        print("Thank You!")
+        break
+    elif menu==1:
+        x=input("Where to add : ")
+        if x in expenses:
+            expenses[x].append(int(input("Amount")))
+        else:
+                 print("invalid entry")      
+    elif menu==2:
+        for category in expenses:
+            print(category,expenses[category])
+            print("===Thank you===")
+    elif menu==3:
+        a=0
+        for expense in expenses:
+             for spending in expenses[expense]:
+                  a+=spending
+        print(a)
+    elif menu==4:
+        for category in expenses:
+             print(category , sum(expenses[category]))
+    elif menu==5:
+         x=input("Where to remove : ")
+         if x in expenses:
+              amount = int(input("Amount : "))
+              if amount in expenses[x]:
+                   expenses[x].remove(amount)
+              else:
+                   print("Expense not found!!")
+         else:
+              print("Category not found")    
+
+        
+                  
+    else:
+            print("Invalid option")
+
+     
