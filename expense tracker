@@ -7,7 +7,8 @@ else:
     expenses={"groceries":[],"rent":[]}
 print("======EXPENSE TRACKER=======")
 while True:
-    menu = int(input("1.Add category in expenses\n"
+    try:
+         menu = int(input("1.Add category in expenses\n"
               "2.Add Expense\n"
              "3.View Expense\n"
              "4.View spending\n"
@@ -15,7 +16,9 @@ while True:
              "6.Delete expense\n"
              "7.Exit\n"
              "ENTER YOUR CHOICE :  "))
-
+    except ValueError:
+         print("Enter number 1 to 6")
+         continue
     if menu == 7 :
         with open("expenses.json","w") as file:
              json.dump(expenses,file)
@@ -27,11 +30,20 @@ while True:
             if type_of_expenses=="q":
                 break
             else:
-                expenses[type_of_expenses]=[]
+                if type_of_expenses in expenses:
+                    print("Type of expense already exists")
+                else:
+                    expenses[type_of_expenses]=[]
     elif menu==2:
         x=input("Where to add : ")
         if x in expenses:
-            expenses[x].append(int(input("Amount: ")))
+            try:
+                 added_amount = int(input("Amount: "))
+                 expenses[x].append(added_amount)
+            except ValueError:
+                 print("Enter an Integer!!")
+            except added_amount<0:
+                 print("Add only positive Integers!!")
         else:
                  print("invalid entry")
     elif menu==3:
