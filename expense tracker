@@ -37,13 +37,15 @@ while True:
     elif menu==2:
         x=input("Where to add : ")
         if x in expenses:
-            try:
-                 added_amount = int(input("Amount: "))
+            try:   
+               added_amount = int(input("Amount: "))
+               if added_amount<0:
+                 print("Add only positive Integers!!")
+               else:
                  expenses[x].append(added_amount)
             except ValueError:
                  print("Enter an Integer!!")
-            except added_amount<0:
-                 print("Add only positive Integers!!")
+            
         else:
                  print("invalid entry")
     elif menu==3:
